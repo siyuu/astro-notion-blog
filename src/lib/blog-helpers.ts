@@ -303,3 +303,13 @@ export const parseYouTubeVideoId = (url: URL): string => {
 
   return ''
 }
+
+export const isBlueskyURL = (url: URL): boolean => {
+  if (
+    url.hostname !== 'bsky.app' &&
+    url.hostname !== 'www.bsky.app'
+  ) {
+    return false;
+  }
+  return /^\/profile\/[^/]+\/post\/[^/]+$/.test(url.pathname)
+}

@@ -7,6 +7,7 @@ import {
   isPinterestURL,
   isCodePenURL,
   isCircuitSimulatorAppletURL,
+  isBlueskyURL,
 } from '../../lib/blog-helpers.ts'
 import Bookmark from './Bookmark.astro'
 import TweetEmbed from './TweetEmbed.astro'
@@ -15,6 +16,7 @@ import InstagramEmbed from './InstagramEmbed.astro'
 import PinterestEmbed from './PinterestEmbed.astro'
 import CodePenEmbed from './CodePenEmbed.astro'
 import CircuitSimulatorAppletEmbed from './CircuitSimulatorAppletEmbed.astro'
+import BlueskyEmbed from './BlueskyEmbed.astro'
 
 export interface Props {
   block: interfaces.Block
@@ -23,9 +25,11 @@ export interface Props {
 
 const { block, urlMap } = Astro.props
 
-let url: URL
+let url: URL | undefined = undefined;
 try {
-  url = new URL(block.Embed.Url)
+  if (block.Embed?.Url) {
+    url = new URL(block.Embed.Url);
+  }
 } catch (err) {
   console.log(err)
 }
@@ -33,7 +37,9 @@ try {
 
 {
   url ? (
-    isTweetURL(url) ? (
+    isBlueskyURL(url) ? (
+      <BlueskyEmbed url={url} />
+    ) : isTweetURL(url) ? (
       <TweetEmbed url={url} />
     ) : isTikTokURL(url) ? (
       <TikTokEmbed url={url} />
