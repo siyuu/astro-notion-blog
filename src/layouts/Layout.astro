@@ -142,6 +142,11 @@ if (database.Icon && database.Icon.Type === 'file') {
         <aside>
           <Darkmode />
           <SearchButton />
+          <div>
+            <a href={getNavLink('/')}>HOME</a>
+            <br>
+            <a href={getNavLink('/posts/')}>BLOG</a>
+          </div>
           <slot name="aside" />
         </aside>
       </div>
