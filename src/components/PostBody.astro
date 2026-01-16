@@ -13,7 +13,7 @@ const { blocks } = Astro.props
   <NotionBlocks blocks={blocks} isRoot={true} />
 </div>
 
-<style>
+<style is:global>
   .post-body {
     padding: 0.5rem 0;
   }

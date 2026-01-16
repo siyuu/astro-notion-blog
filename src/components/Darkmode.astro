@@ -13,7 +13,7 @@ layout.astro
 :root.darkmode {
   --bg: #191919;
   --fg: #d5d5d5;
-  --accents-1: #864C1D;
+  --accents-1: #4493f8;
   --accents-2: #f26000;
   --accents-3: #a5a5a5;;
 }
@@ -29,7 +29,12 @@ layout.astro
 .darkmode a:hover {
   background: #333 !important;
 }
-
+/* --------------------
+BlogPostsLink.astro
+-------------------- */
+.darkmode .blog-posts-link h2 {
+  color: var(--fg);
+}
 /* --------------------
 pages/index.astro
 -------------------- */
