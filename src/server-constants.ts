@@ -17,3 +17,7 @@ export const REQUEST_TIMEOUT_MS = parseInt(
   10
 )
 export const ENABLE_LIGHTBOX = import.meta.env.ENABLE_LIGHTBOX
+
+console.log('INDEX_PAGE_ID:', INDEX_PAGE_ID)
+console.log('NOTION_API_SECRET:', NOTION_API_SECRET ? 'SET' : 'EMPTY')
+
