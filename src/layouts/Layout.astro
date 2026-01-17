@@ -131,9 +131,7 @@ if (database.Icon && database.Icon.Type === 'file') {
             <footer>
               <div>
                 <span>Powered by&nbsp;</span>
-                <a href="https://github.com/otoyo/astro-notion-blog"
-                  >astro-notion-blog</a
-                >
+                <a href="https://github.com/otoyo/astro-notion-blog">astro-notion-blog</a>
               </div>
             </footer>
           </div>
@@ -144,10 +142,13 @@ if (database.Icon && database.Icon.Type === 'file') {
             <SearchButton />
             <Darkmode />
           </div>
-          <div>
-            <a href={getNavLink('/')}>HOME</a>
-            <br>
-            <a href={getNavLink('/posts')}>BLOG</a>
+          <div class="page-home-link">
+            <ul>
+              <li>
+                <a href={getNavLink('/')}><h2>HOME</h2></a>
+                <a href={getNavLink('/posts')}><h2>BLOG</h2></a>
+              </li>
+              </ul>
           </div>
           <slot name="aside" />
         </aside>
@@ -206,6 +207,37 @@ if (database.Icon && database.Icon.Type === 'file') {
   }
   .aside-controls > :last-child {
     flex: 1;
+  }
+
+  .page-home-link {
+  }
+  .page-home-link h2 {
+    margin: 0;
+    padding-left: 0.4rem;
+    color: #777;
+    font-size: 0.95rem;
+  }
+  .page-home-link ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 0.4rem;
+    margin-block-end: 1rem;
+  }
+  .page-home-link ul li {
+  }
+  .page-home-link ul li a {
+    display: block;
+    border-radius: var(--radius);
+    padding: 0.4rem 0.4rem;
+    line-height: 1.2rem;
+    color: inherit;
+    font-size: 0.95rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .page-home-link ul li a:hover {
+    background-color: #ddd;
   }
 
   @media (max-width: 640px) {
