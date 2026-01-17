@@ -2,8 +2,11 @@
 ---
 
 <div class="mode-wrap">
-  <input type="checkbox" id="mode-toggle" tabindex="0" />
+  <input type="checkbox" id="mode-toggle" tabindex="0" 
+    role="switch" aria-label="Toggle dark mode" />
   <label for="mode-toggle"><span></span></label>
+  
+  <span class="mode-label" aria-live="polite"></span>
 </div>
 
 <style is:global>
@@ -280,6 +283,19 @@ notion-color.css
 .darkmode .mode-wrap #mode-toggle + label {
   border-color: var(--accents-1);
 }
+
+/* --------------------
+ダークモード文言表示
+-------------------- */
+
+.mode-wrap .mode-label::before {
+  content: "Light mode";
+}
+
+.mode-wrap #mode-toggle:checked ~ .mode-label::before {
+  content: "Dark mode";
+}
+
 </style>
 
 <script is:inline>
