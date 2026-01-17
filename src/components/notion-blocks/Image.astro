@@ -21,7 +21,7 @@ if (block.Image.External) {
 <figure class="image">
   {
     image && (
-      <div>
+      <div class="image-wrapper">
         <div>
           {ENABLE_LIGHTBOX ? (
             <a data-fslightbox href={image} data-type="image">
@@ -38,6 +38,18 @@ if (block.Image.External) {
 </figure>
 
 <style>
+
+  .image-wrapper {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .image-wrapper img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
   .image {
     display: flex;
     margin: 0.2rem auto 0;
