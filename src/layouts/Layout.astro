@@ -140,8 +140,10 @@ if (database.Icon && database.Icon.Type === 'file') {
         </main>
 
         <aside>
-          <Darkmode />
-          <SearchButton />
+          <div class="aside-controls">
+            <SearchButton />
+            <Darkmode />
+          </div>
           <div>
             <a href={getNavLink('/')}>HOME</a>
             <br>
@@ -193,6 +195,19 @@ if (database.Icon && database.Icon.Type === 'file') {
     padding: 20px 20px;
     background-color: #f4f4f4;
   }
+
+  .aside-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .aside-controls > :first-child {
+    flex: 2;
+  }
+  .aside-controls > :last-child {
+    flex: 1;
+  }
+
   @media (max-width: 640px) {
     aside {
       order: 2;
