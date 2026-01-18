@@ -78,6 +78,39 @@ if (database.Icon && database.Icon.Type === 'file') {
   </head>
   <body>
     <GoogleAnalytics trackingId={PUBLIC_GA_TRACKING_ID} />
+    <header>
+      <h1>
+        <a href={getNavLink('/')}>
+          {
+            database.Icon && database.Icon.Type === 'emoji' ? (
+              <>
+                <span>{database.Icon.Emoji}</span>
+                {database.Title}
+              </>
+            ) : database.Icon && database.Icon.Type === 'external' ? (
+              <>
+                <img src={database.Icon.Url} alt="Site icon image" />
+                {database.Title}
+              </>
+            ) : database.Icon && database.Icon.Type === 'file' ? (
+              <>
+                <img
+                  src={customIconURL}
+                  class="custom-icon"
+                  alt="Site icon image"
+                />
+                {database.Title}
+              </>
+            ) : (
+              database.Title
+            )
+          }
+        </a>
+      </h1>
+      <div class="description">
+        {database.Description}
+      </div>
+    </header>
     <div class="container">
       <header>
         {
@@ -92,39 +125,6 @@ if (database.Icon && database.Icon.Type === 'file') {
       <div>
         <main>
           <div class="content">
-            <header>
-              <h1>
-                <a href={getNavLink('/')}>
-                  {
-                    database.Icon && database.Icon.Type === 'emoji' ? (
-                      <>
-                        <span>{database.Icon.Emoji}</span>
-                        {database.Title}
-                      </>
-                    ) : database.Icon && database.Icon.Type === 'external' ? (
-                      <>
-                        <img src={database.Icon.Url} alt="Site icon image" />
-                        {database.Title}
-                      </>
-                    ) : database.Icon && database.Icon.Type === 'file' ? (
-                      <>
-                        <img
-                          src={customIconURL}
-                          class="custom-icon"
-                          alt="Site icon image"
-                        />
-                        {database.Title}
-                      </>
-                    ) : (
-                      database.Title
-                    )
-                  }
-                </a>
-              </h1>
-              <div class="description">
-                {database.Description}
-              </div>
-            </header>
 
             <slot name="main" />
 
@@ -338,6 +338,7 @@ if (database.Icon && database.Icon.Type === 'file') {
     --accents-3: #666;
     --geist-foreground: #000;
     --geist-success: #690;
+    --alink: #666;
 
     --radius: 4px;
 
@@ -390,11 +391,11 @@ if (database.Icon && database.Icon.Type === 'file') {
   }
 
   a {
-    color: var(--accents-1);
+    color: var(--alink);
     text-decoration: none;
   }
   a:hover {
-    color: var(--accents-1);
+    color: var(--alink);
   }
 
   mark {
