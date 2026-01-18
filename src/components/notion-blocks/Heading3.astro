@@ -16,15 +16,13 @@ const id = buildHeadingId(block.Heading3)
 
 {
   block.Heading3.IsToggleable ? (
-    <details class="toggle">
+    <details class="toggle" id={id}>
       <summary>
-        <a href={`#${id}`} id={id}>
-          <h5>
-            {block.Heading3.RichTexts.map((richText: interfaces.RichText) => (
-              <RichText richText={richText} />
-            ))}
-          </h5>
-        </a>
+        <h5>
+          {block.Heading3.RichTexts.map((richText: interfaces.RichText) => (
+            <RichText richText={richText} />
+          ))}
+        </h5>
       </summary>
       <div>
         {block.Heading3.Children && (
@@ -68,11 +66,7 @@ const id = buildHeadingId(block.Heading3)
     cursor: pointer;
   }
 
-  .toggle > summary > a {
-    display: inline;
-  }
-
-  .toggle > summary > a > h5 {
+  .toggle > summary > h5 {
     display: inline;
   }
 
