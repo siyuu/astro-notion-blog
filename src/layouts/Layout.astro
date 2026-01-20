@@ -27,7 +27,8 @@ const siteOGImage = new URL(
   Astro.site
 )
 
-let coverImageURL: string
+let coverImageURL: string | undefined = undefined
+
 if (database.Cover) {
   if (database.Cover.Type === 'external') {
     coverImageURL = database.Cover.Url
@@ -38,6 +39,11 @@ if (database.Cover) {
       console.log('Invalid DB cover image URL: ', database.Cover?.Url)
     }
   }
+} else {
+  coverImageURL = new URL(
+    getStaticFilePath('/header-image.png'),
+    Astro.site
+  )
 }
 
 let customIconURL: string
@@ -79,40 +85,7 @@ if (database.Icon && database.Icon.Type === 'file') {
   <body>
     <GoogleAnalytics trackingId={PUBLIC_GA_TRACKING_ID} />
     <header>
-      <h1>
-        <a href={getNavLink('/')}>
-          {
-            database.Icon && database.Icon.Type === 'emoji' ? (
-              <>
-                <span>{database.Icon.Emoji}</span>
-                {database.Title}
-              </>
-            ) : database.Icon && database.Icon.Type === 'external' ? (
-              <>
-                <img src={database.Icon.Url} alt="Site icon image" />
-                {database.Title}
-              </>
-            ) : database.Icon && database.Icon.Type === 'file' ? (
-              <>
-                <img
-                  src={customIconURL}
-                  class="custom-icon"
-                  alt="Site icon image"
-                />
-                {database.Title}
-              </>
-            ) : (
-              database.Title
-            )
-          }
-        </a>
-      </h1>
-      <div class="description">
-        {database.Description}
-      </div>
-    </header>
-    <div class="container">
-      <header>
+      <a href={getNavLink('/')}>
         {
           coverImageURL && (
             <div class="cover">
@@ -120,7 +93,10 @@ if (database.Icon && database.Icon.Type === 'file') {
             </div>
           )
         }
-      </header>
+      </a>
+    </header>
+    <div class="container">
+      <header></header>
 
       <div>
         <main>
@@ -213,7 +189,6 @@ if (database.Icon && database.Icon.Type === 'file') {
   }
   .page-home-link h2 {
     margin: 0;
-    padding-left: 0.4rem;
     color: #777;
     font-size: 0.95rem;
   }
