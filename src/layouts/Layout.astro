@@ -96,7 +96,22 @@ if (database.Icon && database.Icon.Type === 'file') {
       </a>
     </header>
     <div class="container">
-      <header></header>
+      <header>
+        <aside class="aside1">
+          <div class="aside-controls">
+            <SearchButton />
+            <Darkmode />
+          </div>
+          <div class="page-home-link">
+            <ul>
+              <li>
+                <a href={getNavLink('/')}><h2>HOME</h2></a>
+                <a href={getNavLink('/posts')}><h2>BLOG</h2></a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </header>
 
       <div>
         <main>
@@ -113,19 +128,7 @@ if (database.Icon && database.Icon.Type === 'file') {
           </div>
         </main>
 
-        <aside>
-          <div class="aside-controls">
-            <SearchButton />
-            <Darkmode />
-          </div>
-          <div class="page-home-link">
-            <ul>
-              <li>
-                <a href={getNavLink('/')}><h2>HOME</h2></a>
-                <a href={getNavLink('/posts')}><h2>BLOG</h2></a>
-              </li>
-              </ul>
-          </div>
+        <aside class="aside2">
           <slot name="aside" />
         </aside>
       </div>
@@ -159,18 +162,27 @@ if (database.Icon && database.Icon.Type === 'file') {
     flex: 1;
     order: 2;
     justify-content: space-between;
+    margin-top: -165px;
   }
   @media (max-width: 640px) {
     main {
       order: 1;
+      margin: 0;
     }
   }
 
   aside {
     order: 1;
     width: 300px;
-    padding: 20px 20px;
-    background-color: #f4f4f4;
+    padding: 20px;
+    background-color: #F4F4F4;
+  }
+
+  .aside1 {
+  }
+
+  .aside2 {
+    margin-top: -40px;
   }
 
   .aside-controls {
@@ -219,6 +231,12 @@ if (database.Icon && database.Icon.Type === 'file') {
     aside {
       order: 2;
       width: 100%;
+    }
+    .aside1 {
+      margin-bottom: 20px;
+    }
+    .aside2 {
+      margin-top: 0;
     }
   }
 
