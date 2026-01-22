@@ -96,42 +96,34 @@ if (database.Icon && database.Icon.Type === 'file') {
       </a>
     </header>
     <div class="container">
-      <header>
-        <aside class="aside1">
-          <div class="aside-controls">
-            <SearchButton />
-            <Darkmode />
-          </div>
-          <div class="page-home-link">
-            <ul>
-              <li>
-                <a href={getNavLink('/')}><h2>HOME</h2></a>
-                <a href={getNavLink('/posts')}><h2>BLOG</h2></a>
-              </li>
-            </ul>
-          </div>
-        </aside>
-      </header>
-
-      <div>
-        <main>
-          <div class="content">
-
-            <slot name="main" />
-
-            <footer>
-              <div>
-                <span>Powered by&nbsp;</span>
-                <a href="https://github.com/otoyo/astro-notion-blog">astro-notion-blog</a>
-              </div>
-            </footer>
-          </div>
-        </main>
-
-        <aside class="aside2">
-          <slot name="aside" />
-        </aside>
-      </div>
+      <aside class="aside1">
+        <div class="aside-controls">
+          <SearchButton />
+          <Darkmode />
+        </div>
+        <div class="page-home-link">
+          <ul>
+            <li>
+              <a href={getNavLink('/')}><h2>HOME</h2></a>
+              <a href={getNavLink('/posts')}><h2>BLOG</h2></a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <aside class="aside2">
+        <slot name="aside" />
+      </aside>
+      <main>
+        <div class="content">
+          <slot name="main" />
+          <footer>
+            <div>
+              <span>Powered by&nbsp;</span>
+              <a href="https://github.com/otoyo/astro-notion-blog">astro-notion-blog</a>
+            </div>
+          </footer>
+        </div>
+      </main>
     </div>
 
     <SearchModal />
@@ -145,46 +137,49 @@ if (database.Icon && database.Icon.Type === 'file') {
 
 <style is:global>
   .container {
-    min-height: 100vh;
-  }
-
-  .container > div {
-    display: flex;
-    max-width: 1280px;
-  }
-  @media (max-width: 640px) {
-    .container > div {
-      display: block;
-    }
-  }
-
-  main {
-    flex: 1;
-    order: 2;
-    justify-content: space-between;
-    margin-top: -165px;
-  }
-  @media (max-width: 640px) {
-    main {
-      order: 1;
-      margin: 0;
-    }
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "aside1 main"
+      "aside2 main";
+    align-content: start;
   }
 
   aside {
-    order: 1;
-    width: 300px;
-    padding: 20px;
+    padding: 0 20px;
     background-color: #F4F4F4;
   }
-
   .aside1 {
+    grid-area: aside1;
+    align-self: start;
+    padding: 20px;
   }
-
   .aside2 {
-    margin-top: -40px;
+    grid-area: aside2;
+  }
+  main {
+    grid-area: main;
   }
 
+  @media (max-width: 640px) {
+    .container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "aside1"
+        "main"
+        "aside2";
+    }
+    aside {
+      width: 100%
+    }
+    .container > main {
+      margin-top: 10px;
+    }
+    .aside2 {
+      padding: 20px;
+    }
+  }
   .aside-controls {
     display: flex;
     align-items: center;
@@ -207,8 +202,6 @@ if (database.Icon && database.Icon.Type === 'file') {
   .page-home-link ul {
     list-style-type: none;
     padding: 0;
-    margin-top: 0.4rem;
-    margin-block-end: 1rem;
   }
   .page-home-link ul li {
   }
@@ -227,19 +220,6 @@ if (database.Icon && database.Icon.Type === 'file') {
     background-color: #ddd;
   }
 
-  @media (max-width: 640px) {
-    aside {
-      order: 2;
-      width: 100%;
-    }
-    .aside1 {
-      margin-bottom: 20px;
-    }
-    .aside2 {
-      margin-top: 0;
-    }
-  }
-
   div.cover {
   }
   div.cover img {
@@ -251,7 +231,9 @@ if (database.Icon && database.Icon.Type === 'file') {
   }
 
   div.content {
+    max-width: 800px;
     padding: 20px 40px;
+    margin: 0 auto;
   }
   @media (max-width: 640px) {
     div.content {
