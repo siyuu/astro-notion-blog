@@ -75,6 +75,9 @@ if (database.Icon && database.Icon.Type === 'file') {
     <meta name="twitter:description" content={siteDescription} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage || siteOGImage} />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="./android-touch-icon.png" sizes="192x192">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
@@ -95,7 +98,11 @@ if (database.Icon && database.Icon.Type === 'file') {
         }
       </a>
     </header>
-    <div class="container">
+    <div
+      class={`container ${
+        Astro.slots.has('aside') ? 'has-aside2' : ''
+      }`}
+    >
       <aside class="aside1">
         <div class="aside-controls">
           <SearchButton />
@@ -110,20 +117,27 @@ if (database.Icon && database.Icon.Type === 'file') {
           </ul>
         </div>
       </aside>
-      <aside class="aside2">
-        <slot name="aside" />
-      </aside>
+      {Astro.slots.has('aside') && (
+        <aside class="aside2">
+          <slot name="aside" />
+        </aside>
+      )}
       <main>
         <div class="content">
           <slot name="main" />
-          <footer>
-            <div>
-              <span>Powered by&nbsp;</span>
-              <a href="https://github.com/otoyo/astro-notion-blog">astro-notion-blog</a>
-            </div>
-          </footer>
         </div>
       </main>
+      <footer>
+        <div>
+          <span>Powered by&nbsp;</span>
+          <a href="https://github.com/otoyo/astro-notion-blog">astro-notion-blog</a>
+        </div>
+        <div>
+          <span>🄫 2026&nbsp;</span>
+          <a href="https://siyuu2.com">しゆう</a>
+        </div>
+      </footer>
+
     </div>
 
     <SearchModal />
@@ -142,8 +156,18 @@ if (database.Icon && database.Icon.Type === 'file') {
     grid-template-rows: auto 1fr;
     grid-template-areas:
       "aside1 main"
-      "aside2 main";
+      "aside1 footer";
     align-content: start;
+  }
+  .container.has-aside2 {
+    grid-template-areas:
+      "aside1 main"
+      "aside2 main"
+      "aside2 footer";
+    align-content: start;
+  }
+  .container.has-aside2.aside1{
+      align-self: start;
   }
 
   aside {
@@ -152,7 +176,6 @@ if (database.Icon && database.Icon.Type === 'file') {
   }
   .aside1 {
     grid-area: aside1;
-    align-self: start;
     padding: 20px;
   }
   .aside2 {
@@ -160,15 +183,20 @@ if (database.Icon && database.Icon.Type === 'file') {
   }
   main {
     grid-area: main;
+    margin: 0 auto;
+  }
+  footer {
+    grid-area: footer;
   }
 
   @media (max-width: 640px) {
-    .container {
+    .container, .container.has-aside2 {
       grid-template-columns: 1fr;
       grid-template-areas:
         "aside1"
         "main"
-        "aside2";
+        "aside2"
+        "footer";
     }
     aside {
       width: 100%
@@ -178,6 +206,7 @@ if (database.Icon && database.Icon.Type === 'file') {
     }
     .aside2 {
       padding: 20px;
+      margin-bottom: 20px;
     }
   }
   .aside-controls {
@@ -219,6 +248,24 @@ if (database.Icon && database.Icon.Type === 'file') {
   .page-home-link ul li a:hover {
     background-color: #ddd;
   }
+  footer {
+    padding: 0 0 10px;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+  @media (max-width: 640px) {
+    footer {
+      margin: 0 auto 30px;
+    }
+  }
+  footer span {
+    color: #777;
+  }
+  footer a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
 
   div.cover {
   }
@@ -279,23 +326,12 @@ if (database.Icon && database.Icon.Type === 'file') {
     padding: 0.3rem 0 0.6rem;
     font-size: 0.95rem;
   }
-
-  main footer {
-    margin: 30px 0 10px;
-    text-align: center;
-    font-size: 0.75rem;
-  }
-  @media (max-width: 640px) {
-    main footer {
-      margin: 0 auto 30px;
-    }
-  }
-  main footer span {
-    color: #777;
-  }
-  main footer a {
-    color: inherit;
-    text-decoration: underline;
+  .card {
+    max-width:620px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
   }
 </style>
 
