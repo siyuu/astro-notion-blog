@@ -12,14 +12,14 @@ const postURL =
 ---
 
 <div class="tweet-embed">
-  <blockquote class="twitter-tweet">
+  <blockquote class="twitter-tweet" data-theme="dark">
     <a href={postURL}></a>
   </blockquote>
 </div>
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<style>
+<style is:global>
   .tweet-embed {
     width: 100%;
     max-width: 640px;
@@ -27,5 +27,8 @@ const postURL =
   }
   .tweet-embed div:first-child div:first-child {
     margin: auto;
+  }
+  .twitter-tweet {
+    margin-inline: auto;
   }
 </style>
