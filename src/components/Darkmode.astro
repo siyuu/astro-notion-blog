@@ -18,7 +18,7 @@ layout.astro
   --fg: #d5d5d5;
   --accents-1: #4493f8;
   --accents-2: #f26000;
-  --accents-3: #a5a5a5;;
+  --accents-3: #a5a5a5;
   --alink: #d5d5d5;
 }
 .darkmode .header h1 {
@@ -178,6 +178,22 @@ PostRelativeLink.astro
 -------------------- */
 .darkmode div.post-relative-link > div > a.colored  {
   background: rgba(227,226,224,0.1);
+}
+
+/* --------------------
+ShareButton.astro
+-------------------- */
+.darkmode .share-btn  {
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+  background: #202020;
+  border: 1px solid var(--accents-3);
+}
+.darkmode .share-btn:hover {
+  background: #333 !important;
+}
+
+.darkmode .toast {
+  background: #222;
 }
 
 /* --------------------
