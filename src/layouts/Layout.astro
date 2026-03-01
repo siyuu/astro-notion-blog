@@ -188,6 +188,9 @@ if (database.Icon && database.Icon.Type === 'file') {
   footer {
     grid-area: footer;
   }
+  aside, main {
+    min-width: 0;
+  }
 
   @media (max-width: 640px) {
     .container, .container.has-aside2 {
@@ -198,14 +201,11 @@ if (database.Icon && database.Icon.Type === 'file') {
         "aside2"
         "footer";
     }
-    aside {
-      width: 100%
-    }
     .container > main {
       margin-top: 10px;
     }
     .aside2 {
-      padding: 20px;
+      padding : 20px 20px 0 20px;
       margin-bottom: 20px;
     }
   }
