@@ -152,7 +152,7 @@ if (database.Icon && database.Icon.Type === 'file') {
 <style is:global>
   .container {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 280px minmax(0, 1fr);
     grid-template-rows: auto 1fr;
     grid-template-areas:
       "aside1 main"
