@@ -304,6 +304,22 @@ export const parseYouTubeVideoId = (url: URL): string => {
   return ''
 }
 
+export const isNicoVideoURL = (url: URL): boolean => {
+  if (['www.nicovideo.jp', 'nicovideo.jp'].includes(url.hostname)) {
+    return true
+  }
+  return false
+}
+
+export const parseNicoVideoId = (url: URL): string => {
+  if (!isNicoVideoURL(url)) return ''
+
+  const NICONICO_ID_REGEX = /(sm|nm|so)\d+/
+  const elements = url.pathname.split('/')
+  const match = url.href.match(NICONICO_ID_REGEX)
+  return match ? match[0] : ''
+}
+
 export const isBlueskyURL = (url: URL): boolean => {
   if (
     url.hostname !== 'bsky.app' &&

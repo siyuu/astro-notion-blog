@@ -1,6 +1,7 @@
 ---
 import * as interfaces from '../../lib/interfaces.ts'
 import { isYouTubeURL, parseYouTubeVideoId } from '../../lib/blog-helpers.ts'
+import { isNicoVideoURL, parseNicoVideoId } from '../../lib/blog-helpers.ts'
 import Caption from './Caption.astro'
 
 export interface Props {
@@ -27,6 +28,14 @@ try {
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
+        />
+      )
+    }
+    {
+      isNicoVideoURL(url) && (
+        <iframe
+          src={`https://embed.nicovideo.jp/watch/${parseNicoVideoId(url)}`}
+          frameborder="0"
         />
       )
     }
