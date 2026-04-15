@@ -305,7 +305,7 @@ export const parseYouTubeVideoId = (url: URL): string => {
 }
 
 export const isNicoVideoURL = (url: URL): boolean => {
-  if (['www.nicovideo.jp', 'nicovideo.jp'].includes(url.hostname)) {
+  if (['www.nicovideo.jp', 'nicovideo.jp', 'embed.nicovideo.jp'].includes(url.hostname)) {
     return true
   }
   return false
@@ -314,7 +314,7 @@ export const isNicoVideoURL = (url: URL): boolean => {
 export const parseNicoVideoId = (url: URL): string => {
   if (!isNicoVideoURL(url)) return ''
 
-  const NICONICO_ID_REGEX = /(sm|nm|so)\d+/
+  const NICONICO_ID_REGEX = /(sm|nm|ss|so)\d+/
   const elements = url.pathname.split('/')
   const match = url.href.match(NICONICO_ID_REGEX)
   return match ? match[0] : ''

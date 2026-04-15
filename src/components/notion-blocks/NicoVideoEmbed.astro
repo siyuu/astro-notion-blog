@@ -1,0 +1,44 @@
+---
+import { parseNicoVideoId } from '../../lib/blog-helpers.ts'
+
+export interface Props {
+  url: URL
+}
+
+const { url } = Astro.props
+
+const videoId = parseNicoVideoId(url)
+
+if (!videoId) {
+  console.warn('Invalid NicoVideo URL:', url.href)
+}
+
+---
+
+<div class="video">
+  <div>
+    {
+      videoId && (
+        <iframe
+          src={`https://embed.nicovideo.jp/watch/${videoId}`}
+          frameborder="0"
+        />
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .video div:first-child {
+    width: 100%;
+  }
+  .video div:first-child iframe {
+    width: 100%;
+    height: 340px;
+  }
+  @media (max-width: 640px) {
+    .video div:first-child iframe {
+      height: 220px;
+    }
+  }
+</style>
