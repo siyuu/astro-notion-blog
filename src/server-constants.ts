@@ -4,6 +4,8 @@ export const DATABASE_ID =
   import.meta.env.DATABASE_ID || process.env.DATABASE_ID || ''
 export const INDEX_PAGE_ID =
   import.meta.env.INDEX_PAGE_ID || process.env.INDEX_PAGE_ID || ''
+export const INX_CLOUD_ACCESS_TOKEN =
+  import.meta.env.NX_CLOUD_ACCESS_TOKEN || process.env.NX_CLOUD_ACCESS_TOKEN || ''
 
 export const CUSTOM_DOMAIN =
   import.meta.env.CUSTOM_DOMAIN || process.env.CUSTOM_DOMAIN || '' // <- Set your costom domain if you have. e.g. alpacat.com
